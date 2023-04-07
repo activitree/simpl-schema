@@ -1,0 +1,15 @@
+node_modules/
+package-lock.json
+/.deploy
+
+app/.idea
+app/.idea/*
+*.xml
+settings.json
+.DS_Store
+server/private
+/packages/meteor-push/*
+/packages/meteor-push/
+dist
+.idea
+.npmrc
