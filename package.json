@@ -1,17 +1,18 @@
 {
   "name": "@activitree/simpl-schema",
-  "version": "3.4.1",
-  "description": "A schema validation package that supports direct validation of MongoDB update modifier objects.",
+  "version": "1.0.2",
+  "description": "A schema validation package that supports direct validation of MongoDB update modifier objects. Downgraded for NodeJS 14",
   "author": "Eric Dobbertin <eric@dairystatedesigns.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/activitree/simpl-schema.git"
+    "url": "https://github.com/activitree/simpl-schema.git",
+    "directory": "package"
   },
   "bugs": {
     "url": "https://github.com/longshotlabs/simpl-schema/issues"
   },
-  "homepage": "https://github.com/activitree/simpl-schema",
+  "homepage": "https://github.com/longshotlabs/simpl-schema",
   "type": "module",
   "files": [
     "dist",
@@ -28,8 +29,8 @@
     }
   },
   "engines": {
-    "node": ">=14.16",
-    "npm": ">=6"
+    "node": ">=20.11",
+    "npm": ">=10"
   },
   "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead",
   "scripts": {
@@ -38,32 +39,51 @@
     "lint": "eslint . --ext ts,tsx",
     "lint:fix": "eslint . --fix --ext ts,tsx",
     "prepublishOnly": "npm run build",
-    "test": "mocha",
-    "test:watch": "npm test -- --watch"
+    "test": "mocha"
   },
   "devDependencies": {
-    "@types/clone": "^2.1.1",
-    "@types/json-schema": "^7.0.11",
-    "@types/mocha": "^10.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.48.0",
-    "@typescript-eslint/parser": "^5.48.0",
-    "eslint": "^8.20.0",
+    "@types/clone": "^2.1.4",
+    "@types/json-schema": "^7.0.15",
+    "@types/mocha": "^10.0.9",
+    "@typescript-eslint/eslint-plugin": "^8.12.2",
+    "@typescript-eslint/parser": "^8.12.2",
+    "eslint": "^9.13.0",
     "eslint-config-standard-with-typescript": "^22.0.0",
-    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-redos": "^4.4.1",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
-    "eslint-plugin-you-dont-need-lodash-underscore": "^6.12.0",
-    "expect": "^29.3.1",
-    "mocha": "^10.2.0",
-    "semantic-release": "^19.0.5",
-    "ts-node": "^10.9.1",
-    "ts-standard": "^11.0.0",
-    "typescript": "^4.9.4"
+    "eslint-plugin-promise": "^7.1.0",
+    "eslint-plugin-redos": "^4.4.5",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-you-dont-need-lodash-underscore": "^6.14.0",
+    "expect": "^29.7.0",
+    "mocha": "^10.8.1",
+    "semantic-release": "^24.2.0",
+    "ts-node": "^10.9.2",
+    "ts-standard": "^12.0.2",
+    "typescript": "^5.6.3"
   },
   "dependencies": {
     "clone": "^2.1.2",
-    "mongo-object": "^1.0.0"
+    "mongo-object": "3.0.1"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/github",
+        {
+          "successComment": ":tada: This ${issue.pull_request ? 'PR is included' : 'issue has been resolved'} in version ${nextRelease.version} :tada:\n\nThe release is available on:\n- [npm package (@latest dist-tag)](https://www.npmjs.com/package/simpl-schema/v/${nextRelease.version})\n- [GitHub release](https://github.com/aldeed/simpl-schema/releases/tag/${nextRelease.version})\n\nIf this makes you happy, please consider [becoming a sponsor](https://github.com/sponsors/aldeed).\n\nYour **[semantic-release](https://github.com/semantic-release/semantic-release)** bot :package::rocket:"
+        }
+      ]
+    ],
+    "tagFormat": "${version}"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
